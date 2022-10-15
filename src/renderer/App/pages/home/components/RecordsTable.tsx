@@ -9,9 +9,13 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
+import moment = require("moment");
+
 import * as React from "react";
 import { FcViewDetails } from "react-icons/fc";
+import { setService } from "../../../features/AppReducer";
 import CheckModel from "../../../models/CheckModel";
+import { useAppDispatch } from "../../../store";
 import { RecordsTableHeader } from "../data";
 import { CustomTableCell } from "../shared";
 
@@ -20,6 +24,7 @@ interface IProps {
   checks: CheckModel[];
 }
 export default function RecordsTable({ sidebar, checks }: IProps) {
+  const dispatch = useAppDispatch();
   return (
     <TableContainer
       sx={(theme) => ({
@@ -68,14 +73,19 @@ export default function RecordsTable({ sidebar, checks }: IProps) {
               </CustomTableCell>
               <CustomTableCell props={{ align: "center" }}>
                 <Typography variant="body2">
-                  {chck.checkOutTime ? chck.checkOutTime : "----"}
+                  {chck.checkOutTime
+                    ? moment(chck.checkOutTime).format("h:m:s a")
+                    : "----"}
                 </Typography>
               </CustomTableCell>
               <CustomTableCell props={{ align: "left" }}>
                 <Typography variant="body2">{chck.tagId}</Typography>
               </CustomTableCell>
               <CustomTableCell props={{ align: "center" }}>
-                <IconButton size="small">
+                <IconButton
+                  onClick={() => dispatch(setService(chck))}
+                  size="small"
+                >
                   <FcViewDetails />
                 </IconButton>
               </CustomTableCell>

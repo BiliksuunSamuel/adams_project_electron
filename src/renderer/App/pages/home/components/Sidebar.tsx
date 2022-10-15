@@ -40,7 +40,7 @@ export default function Sidebar({ handleClose, open }: IProps) {
           })}
           direction="row"
         >
-          <Typography variant="body1">AuomatedPackingLodge</Typography>
+          <Typography variant="body1">Automated Parking Lot</Typography>
           <IconButton onClick={handleClose} size="small">
             <FcPrevious />
           </IconButton>

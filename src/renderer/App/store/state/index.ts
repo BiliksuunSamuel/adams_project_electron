@@ -1,4 +1,5 @@
 import {
+  IAppstateReducer,
   IChecksReducerState,
   IResponseReducerState,
   IUserReducerState,
@@ -16,4 +17,9 @@ export const ResponseReducerState: IResponseReducerState = {
 
 export const ChecksReducerState: IChecksReducerState = {
   checks: [],
+};
+
+export const AppstateReducerState: IAppstateReducer = {
+  service: null,
+  slot: 0,
 };

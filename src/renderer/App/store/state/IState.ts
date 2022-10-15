@@ -14,3 +14,8 @@ export interface IResponseReducerState {
 export interface IChecksReducerState {
   checks: CheckModel[];
 }
+
+export interface IAppstateReducer {
+  service: CheckModel | null;
+  slot: number;
+}

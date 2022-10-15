@@ -8,10 +8,12 @@ import {
   FcSynchronize,
 } from "react-icons/fc";
 import { Outlet, useNavigate } from "react-router-dom";
-import { GetRoutes } from "../../../api/routes";
+import { GetRoutes, socketURL } from "../../../api/routes";
 import { Loader } from "../../../components";
 import { ChecksThunk } from "../../../functions/thunks";
 import { useAppDispatch, useAppSelector } from "../../../store";
+import socketIo from "socket.io-client";
+import { Socket } from "socket.io-client";
 import {
   AccountMenu,
   Navbar,
@@ -19,7 +21,10 @@ import {
   SearchRecord,
   Sidebar,
 } from "../components";
+import { SocketEvents } from "../../../constants";
+import { setSlot } from "../../../features/AppReducer";
 
+let socket: Socket;
 export default function HomePage() {
   const dispatch = useAppDispatch();
   const navigation = useNavigate();
@@ -32,6 +37,13 @@ export default function HomePage() {
   React.useEffect(() => {
     navigation("service/add");
     dispatch(ChecksThunk({ route: GetRoutes.GetChecks, method: "GET" }));
+  }, []);
+
+  React.useEffect(() => {
+    socket = socketIo(socketURL, { transports: ["websocket"] });
+    socket.on(SocketEvents.slot, (data) => {
+      dispatch(setSlot(parseInt(data)));
+    });
   }, []);
 
   React.useEffect(() => {

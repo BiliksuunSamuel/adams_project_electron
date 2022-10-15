@@ -1,6 +1,6 @@
+import { IconType } from "react-icons/lib";
 import { SvgIconTypeMap, TableCellProps } from "@mui/material";
 import { OverridableComponent } from "@mui/material/OverridableComponent";
-import { IconType } from "react-icons/lib";
 
 export interface ISidebarRoute {
   title: string;

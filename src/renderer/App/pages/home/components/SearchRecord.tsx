@@ -7,8 +7,18 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
 import { TransitionProps } from "@mui/material/transitions";
-import { Divider, InputAdornment, Stack, TextField } from "@mui/material";
+import {
+  Divider,
+  InputAdornment,
+  MenuItem,
+  Stack,
+  TextField,
+} from "@mui/material";
 import { FcReadingEbook } from "react-icons/fc";
+import CheckModel from "../../../models/CheckModel";
+import { useAppDispatch, useAppSelector } from "../../../store";
+import { RecordSearch } from "../../../../../services";
+import { setService, setSlot } from "../../../features/AppReducer";
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -25,6 +35,9 @@ interface IProps {
 }
 
 export default function SearchRecord({ open, handleClose }: IProps) {
+  const [results, setResults] = React.useState<CheckModel[]>([]);
+  const { checks } = useAppSelector((state) => state.ChecksReducer);
+  const dispatch = useAppDispatch();
   return (
     <Dialog
       open={open}
@@ -54,10 +67,24 @@ export default function SearchRecord({ open, handleClose }: IProps) {
                 </InputAdornment>
               ),
             }}
+            onChange={(e) => setResults(RecordSearch(e.target.value, checks))}
             fullWidth
             size="small"
             placeholder="Car Registration, Customer Name ..."
           />
+        </Stack>
+        <Stack alignItems="center" justifyContent="center" width="100%">
+          {results.map((re) => (
+            <MenuItem
+              key={re._id}
+              sx={(theme) => ({
+                width: "100%",
+              })}
+              onClick={() => dispatch(setService(re))}
+            >
+              {re.driverName}
+            </MenuItem>
+          ))}
         </Stack>
       </DialogContent>
       <DialogActions>
