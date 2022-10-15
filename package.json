@@ -1,7 +1,7 @@
 {
   "name": "adams-project-automated-packing-lodge",
   "version": "0.0.1",
-  "description": "Automated Packing Lodge",
+  "description": "Automated Parking Lot",
   "main": "./src/main/index.ts",
   "scripts": {
     "webpack-dev": "webpack --mode development",
@@ -18,11 +18,12 @@
   },
   "build": {
     "appId": "com.arevi.electron-react-typescript-boilerplate",
+    "icon": "./icon.ico",
     "files": [
       "build/*",
       "node_modules/**/*"
     ],
-    "productName": "Electron React TypeScript Boilerplate"
+    "productName": "Automated Parking Lot"
   },
   "devDependencies": {
     "@types/history": "^5.0.0",

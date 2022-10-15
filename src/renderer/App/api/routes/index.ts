@@ -1,5 +1,5 @@
-export const baseURL = " https://adams-automated-parking-hub.herokuapp.com/api";
-export const socketURL = " https://adams-automated-parking-hub.herokuapp.com/";
+export const baseURL = "https://adams-automated-parking-hub.herokuapp.com/api";
+export const socketURL = "https://adams-automated-parking-hub.herokuapp.com/";
 
 export enum PostRoutes {
   UserLogin = "user/login",

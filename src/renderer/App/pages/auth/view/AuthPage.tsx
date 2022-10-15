@@ -44,7 +44,7 @@ export default function AuthPage() {
             justifyContent="flex-end"
             paddingRight={1}
           >
-            <Typography variant="body1">Automated Packing Lodge</Typography>
+            <Typography variant="body1">Automated Parking Lot</Typography>
           </Stack>
         </Stack>
         <Divider />

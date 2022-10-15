@@ -222,13 +222,13 @@ export default function AddServicePage() {
                 onChange={(e) => setInfo({ ...info, note: e.target.value })}
               />
               <Button
-                disabled={Boolean(slot)}
+                disabled={!Boolean(slot)}
                 onClick={HandleSubmit}
                 variant={Boolean(slot) ? "contained" : "outlined"}
                 size="small"
                 color="primary"
               >
-                {Boolean(slot) ? "Submit" : "Slot Available"}
+                {Boolean(slot) ? "Submit" : "Slot UnAvailable"}
               </Button>
             </Stack>
             <Divider />
